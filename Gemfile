@@ -30,7 +30,7 @@ group :development do
  gem 'mysql2'
 end
 group :production do
-  gem 'pg'
+  gem 'pg', '~> 0.18'
   gem 'thin'
 end
 # ruby '1.9.3'
