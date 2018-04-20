@@ -26,9 +26,11 @@ group :assets do
 end
 
 gem 'jquery-rails', '~> 2.3.0'
-
-gem 'mysql2'
+group :development do
+ gem 'mysql2'
+end
 group :production do
+  gem 'pg'
   gem 'thin'
 end
 # ruby '1.9.3'
