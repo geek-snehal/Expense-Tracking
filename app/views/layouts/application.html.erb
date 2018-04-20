@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ExpenceTrackingApp</title>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <!-- <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" rel="Stylesheet"></link> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js" ></script>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class='nav-v'>
+      <div class="navbar-header">
+        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a href='javascript:void(0)' class="navbar-brand">Expense Tracking</a>
+      </div>
+      <% if user_signed_in? %>
+        <div class="navbar-collapse collapse navbar-right" id="navbar">
+          <%= link_to 'LogOut', '/users/sign_out', 'data-method' => 'delete', class: "btn btn-success" %>
+        </div>
+      <% end %>
+      </div>
+    </nav>
+    <% if user_signed_in? %>
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li class="active"><a href='javascript:void(0)'>Groups<span class="sr-only">(current)</span></a></li>
+              <%= render 'groups/group_list' %>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-md-10">
+          <h3 class="page-header header"><%= link_to 'Welcome ' + current_user.name, users_path %></h3>
+          <%=link_to 'Create Group', new_group_path, class: "btn btn-info btn-sm"%>
+          <%=link_to 'Add Bill', new_expense_path, class: "btn btn-info btn-sm" %>
+          <%= yield %>
+
+          <!-- Popup for create group-->
+          <div id="addGroup" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" style='background-color:"#fff"'>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title" id="myModalLabel">Create Group</h4>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Popup for create bill-->
+          <div id="addBill" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" style='background-color:"#fff"'>
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Add Bill</h4>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <%= yield %>
+    <% end %>
+  </div>
+</body>
+</html>
