@@ -27,11 +27,8 @@ end
 
 gem 'jquery-rails', '~> 2.3.0'
 
-group :development, :test do
-  gem 'mysql2'
-end
+gem 'mysql2'
 group :production do
-  gem 'pg'
   gem 'thin'
 end
 # ruby '1.9.3'
