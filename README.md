@@ -1,5 +1,9 @@
 = Expense Tracking (RoR)
 ---
+ - In this application you can keep track of your expenses with your frieends.
+ - you can create group with other people(those people must be registered user of the application otherwise you cannot add them in your group)
+ - You can start adding expenses by doing add bill.
+ - Application will keep track of your expense.
 
 == Prerequisites for application
 
